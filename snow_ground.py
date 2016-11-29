@@ -128,13 +128,14 @@ def save_as_obj(array, filename):
     f = open(filename, 'w')
     for x in range(0, len(array)):
         for y in range(0, len(array[0])):
-            f.write(get_vertex_string(array, x, y))
+            f.write(get_vertex_string(x, y, array[x, y]))
+
     f.write(get_triangles_string(len(array), len(array[0])))
     f.close() # you can omit in most cases as the destructor will call it
 
 
-def get_vertex_string(array, x, y):
-    return 'v ' + str(x) + ' ' + str(y) + ' ' + str(array[x, y]) + '\n'
+def get_vertex_string(x, y, z, scale = 1.):
+    return 'v ' + str(x / scale) + ' ' + str(y / scale) + ' ' + str(z) + '\n'
 
 
 def get_triangles_string(x_max, y_max):
@@ -166,13 +167,16 @@ savedir = create_dir('animation') # Create a folder
 
 
 counter = 0 # Set counter
-while np.average(array) < 1: # While snow height is lower than 1
+while np.average(array) < 0.5: # While snow height is lower than 1
 
     evaluate_snow(snow, array, 0.05, 0.1) # Evaluate snowflakes
 
     smooth(array, 0.1) # Smooth the snow
 
     #show_surface(array, snow, savedir + "/" + str(i).zfill(4) + '.png') # Save to file
-    show_surface(array, snow) # No save, just show
+    #show_surface(array, snow) # No save, just show
 
+    print counter
     counter += 1 # Increase counter
+
+save_as_obj(array, savedir + '/half.obj')
