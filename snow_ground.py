@@ -127,12 +127,17 @@ def evaluate_snow(snow, array, step=0.05, p=1.0): # Evaluates all snowflakes
 def save_as_obj(array, filename):
     f = open(filename, 'w')
     f.write('# Eckpunkte\n')
-    for x in range(0, len(array)):
-        for y in range(0, len(array[0])):
-            f.write(get_vertex_string(x, y, array[x, y], 50.))
 
+    for x in range(0, len(array)):
+        f.write(get_vertex_string(x, 0, 0, 50.))
+        for y in range(0, len(array[0])):
+            f.write(get_vertex_string(x, y+1, array[x, y], 50.))
+        f.write(get_vertex_string(x, len(array[0])+1, 0, 50.))
+
+
+    f.write('s 1\n')
     f.write('# Flächen\n')
-    f.write(get_triangles_string(len(array), len(array[0])))
+    f.write(get_triangles_string(len(array), len(array[0])+2))
     f.close() # you can omit in most cases as the destructor will call it
 
 
@@ -165,7 +170,7 @@ def print_array(array):
         print array[i]
 
 
-array = np.zeros((200, 200)) # Create empty array
+array = np.zeros((50, 50)) # Create empty array
 height = len(array) # Height of ground-array (should be 50)
 width = len(array[0]) # Width of ground-array (should be 50)
 snow = np.random.rand(height, width) # Create randomized array
@@ -173,7 +178,7 @@ savedir = create_dir('obj') # Create a folder
 
 
 counter = 0 # Set counter
-while np.average(array) < 0.5: # While snow height is lower than 1
+while np.average(array) < 0.25: # While snow height is lower than 1
 
     evaluate_snow(snow, array, 0.05, 0.1) # Evaluate snowflakes
 
@@ -187,4 +192,4 @@ while np.average(array) < 0.5: # While snow height is lower than 1
 
     counter += 1 # Increase counter
 
-save_as_obj(array, savedir + '/200_200.obj')
+save_as_obj(array, savedir + '/50_50.obj')
