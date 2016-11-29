@@ -19,23 +19,23 @@ def smooth(array, smoothness):
 
             # If Corners
             if x==0 and y==0:
-                array[x,y] = (1-smoothness/2) * array[x,y] + (smoothness/4) * array[x+1,y] + (smoothness/4) * array[x,y+1]
+                array[x,y] = (1-smoothness) * array[x,y] + (smoothness/2) * array[x+1,y] + (smoothness/2) * array[x,y+1]
             elif x==0 and y==len(array[0])-1:
-                array[x,y] = (1-smoothness/2) * array[x,y] + (smoothness/4) * array[x+1,y] + (smoothness/4) * array[x,y-1]
+                array[x,y] = (1-smoothness) * array[x,y] + (smoothness/2) * array[x+1,y] + (smoothness/2) * array[x,y-1]
             elif x==len(array)-1 and y==0:
-                array[x,y] = (1-smoothness/2) * array[x,y] + (smoothness/4) * array[x-1,y] + (smoothness/4) * array[x,y+1]
+                array[x,y] = (1-smoothness) * array[x,y] + (smoothness/2) * array[x-1,y] + (smoothness/2) * array[x,y+1]
             elif x==len(array)-1 and y==len(array[0])-1:
-                array[x,y] = (1-smoothness/2) * array[x,y] + (smoothness/4) * array[x-1,y] + (smoothness/4) * array[x,y-1]
+                array[x,y] = (1-smoothness) * array[x,y] + (smoothness/2) * array[x-1,y] + (smoothness/2) * array[x,y-1]
 
             # If Edges
             elif x==0:
-                array[x,y] = (1-smoothness*3/4) * array[x,y] + (smoothness/4) * array[x+1,y] + (smoothness/4) * array[x,y+1] + (smoothness/4) * array[x,y-1]
+                array[x,y] = (1-smoothness) * array[x,y] + (smoothness/4) * array[x+1,y] + (smoothness/4) * array[x,y+1] + (smoothness/4) * array[x,y-1]
             elif x==len(array)-1:
-                array[x,y] = (1-smoothness*3/4) * array[x,y] + (smoothness/4) * array[x-1,y] + (smoothness/4) * array[x,y+1] + (smoothness/4) * array[x,y-1]
+                array[x,y] = (1-smoothness) * array[x,y] + (smoothness/4) * array[x-1,y] + (smoothness/4) * array[x,y+1] + (smoothness/4) * array[x,y-1]
             elif y==0:
-                array[x,y] = (1-smoothness*3/4) * array[x,y] + (smoothness/4) * array[x+1,y] + (smoothness/4) * array[x-1,y] + (smoothness/4) * array[x,y+1]
+                array[x,y] = (1-smoothness) * array[x,y] + (smoothness/4) * array[x+1,y] + (smoothness/4) * array[x-1,y] + (smoothness/4) * array[x,y+1]
             elif y==len(array[0])-1:
-                array[x,y] = (1-smoothness*3/4) * array[x,y] + (smoothness/4) * array[x+1,y] + (smoothness/4) * array[x-1,y] + (smoothness/4) * array[x,y-1]
+                array[x,y] = (1-smoothness) * array[x,y] + (smoothness/4) * array[x+1,y] + (smoothness/4) * array[x-1,y] + (smoothness/4) * array[x,y-1]
 
             # Remainings
             else:
@@ -183,7 +183,7 @@ savedir = create_dir('obj') # Create a folder
 
 
 counter = 0 # Set counter
-while np.average(array) < 0.05: # While snow height is lower than 1
+while np.average(array) < 0.5: # While snow height is lower than 1
 
     evaluate_snow(snow, array, 0.05, 0.1) # Evaluate snowflakes
 
