@@ -124,25 +124,30 @@ def evaluate_snow(snow, array, step=0.05, p=1.0): # Evaluates all snowflakes
                     array[ix, iy] += 0.025 # Increase snow height at position
 
 
-def save_as_obj(array, filename):
+def save_as_obj(array, filename, cliff=0):
     f = open(filename, 'w')
     f.write('# Eckpunkte\n')
 
-    for x in range(0, len(array)):
-        f.write(get_vertex_string(x, 0, 0, 50.))
-        for y in range(0, len(array[0])):
-            f.write(get_vertex_string(x, y+1, array[x, y], 50.))
-        f.write(get_vertex_string(x, len(array[0])+1, 0, 50.))
+    for y in range(0, len(array[0])+2):
+        f.write(get_vertex_string(-cliff, y, 0, 50.))
 
+    for x in range(0, len(array)):
+        f.write(get_vertex_string(x, -cliff, 0, 50.))
+        for y in range(0, len(array[0])):
+            f.write(get_vertex_string(x+1, y+1, array[x, y], 50.))
+        f.write(get_vertex_string(x, len(array[0])+1+cliff, 0, 50.))
+
+    for y in range(0, len(array[0])+2):
+        f.write(get_vertex_string(len(array)+1+cliff, y, 0, 50.))
 
     f.write('s 1\n')
     f.write('# Flächen\n')
-    f.write(get_triangles_string(len(array), len(array[0])+2))
+    f.write(get_triangles_string(len(array)+2, len(array[0])+2))
     f.close() # you can omit in most cases as the destructor will call it
 
 
 def get_vertex_string(x, y, z, scale = 1.):
-    return 'v ' + str(x / scale) + ' ' + str(y / scale) + ' ' + str(z) + '\n'
+    return 'v ' + str(x / scale) + ' ' + str(z) + ' ' + str(y / scale) + '\n'
 
 def get_triangle_string(a, b, c):
     return 'f ' + str(a) + ' ' + str(b) + ' ' + str(c) + '\n'
@@ -178,7 +183,7 @@ savedir = create_dir('obj') # Create a folder
 
 
 counter = 0 # Set counter
-while np.average(array) < 0.25: # While snow height is lower than 1
+while np.average(array) < 0.05: # While snow height is lower than 1
 
     evaluate_snow(snow, array, 0.05, 0.1) # Evaluate snowflakes
 
@@ -192,4 +197,5 @@ while np.average(array) < 0.25: # While snow height is lower than 1
 
     counter += 1 # Increase counter
 
-save_as_obj(array, savedir + '/50_50.obj')
+save_as_obj(array, savedir + '/50_50_00.obj')
+save_as_obj(array, savedir + '/50_50_10.obj', 10)
