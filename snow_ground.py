@@ -126,10 +126,12 @@ def evaluate_snow(snow, array, step=0.05, p=1.0): # Evaluates all snowflakes
 
 def save_as_obj(array, filename):
     f = open(filename, 'w')
+    f.write('# Eckpunkte\n')
     for x in range(0, len(array)):
         for y in range(0, len(array[0])):
-            f.write(get_vertex_string(x, y, array[x, y]))
+            f.write(get_vertex_string(x, y, array[x, y], 50.))
 
+    f.write('# Flächen\n')
     f.write(get_triangles_string(len(array), len(array[0])))
     f.close() # you can omit in most cases as the destructor will call it
 
@@ -137,6 +139,8 @@ def save_as_obj(array, filename):
 def get_vertex_string(x, y, z, scale = 1.):
     return 'v ' + str(x / scale) + ' ' + str(y / scale) + ' ' + str(z) + '\n'
 
+def get_triangle_string(a, b, c):
+    return 'f ' + str(a) + ' ' + str(b) + ' ' + str(c) + '\n'
 
 def get_triangles_string(x_max, y_max):
 
@@ -146,11 +150,13 @@ def get_triangles_string(x_max, y_max):
         for y in range(0, y_max):
             number_array[x, y] = x * y_max + y + 1
 
+    print_array(number_array)
+
     result = ""
     for x in range(0, x_max-1):
         for y in range(0, y_max-1):
-            result += 'f ' + str(number_array[x, y]) + ' ' + str(number_array[x, y+1]) + ' ' + str(number_array[x+1, y]) + '\n'
-            result += 'f ' + str(number_array[x+1, y+1]) + ' ' + str(number_array[x+1, y]) + ' ' + str(number_array[x, y+1]) + '\n'
+            result += get_triangle_string(number_array[x, y], number_array[x, y+1], number_array[x+1, y])
+            result += get_triangle_string(number_array[x+1, y+1], number_array[x+1, y], number_array[x, y+1])
     return result
 
 
@@ -163,7 +169,7 @@ array = np.zeros((50, 50)) # Create empty array
 height = len(array) # Height of ground-array (should be 50)
 width = len(array[0]) # Width of ground-array (should be 50)
 snow = np.random.rand(height, width) # Create randomized array
-savedir = create_dir('animation') # Create a folder
+savedir = create_dir('obj') # Create a folder
 
 
 counter = 0 # Set counter
@@ -176,7 +182,9 @@ while np.average(array) < 0.5: # While snow height is lower than 1
     #show_surface(array, snow, savedir + "/" + str(i).zfill(4) + '.png') # Save to file
     #show_surface(array, snow) # No save, just show
 
-    print counter
+    if counter%10==0:
+        print counter
+
     counter += 1 # Increase counter
 
 save_as_obj(array, savedir + '/half.obj')
