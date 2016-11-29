@@ -124,21 +124,21 @@ def evaluate_snow(snow, array, step=0.05, p=1.0): # Evaluates all snowflakes
                     array[ix, iy] += 0.025 # Increase snow height at position
 
 
-def save_as_obj(array, filename, cliff=0):
+def save_as_obj(array, filename, cliff=0, scale=10.):
     f = open(filename, 'w')
     f.write('# Eckpunkte\n')
 
     for y in range(0, len(array[0])+2):
-        f.write(get_vertex_string(-cliff, y, 0, 50.))
+        f.write(get_vertex_string(-cliff, y, 0, scale))
 
     for x in range(0, len(array)):
-        f.write(get_vertex_string(x, -cliff, 0, 50.))
+        f.write(get_vertex_string(x, -cliff, 0, scale))
         for y in range(0, len(array[0])):
-            f.write(get_vertex_string(x+1, y+1, array[x, y], 50.))
-        f.write(get_vertex_string(x, len(array[0])+1+cliff, 0, 50.))
+            f.write(get_vertex_string(x+1, y+1, array[x, y], scale))
+        f.write(get_vertex_string(x, len(array[0])+1+cliff, 0, scale))
 
     for y in range(0, len(array[0])+2):
-        f.write(get_vertex_string(len(array)+1+cliff, y, 0, 50.))
+        f.write(get_vertex_string(len(array)+1+cliff, y, 0, scale))
 
     f.write('s 1\n')
     f.write('# Flächen\n')
@@ -183,11 +183,11 @@ savedir = create_dir('obj') # Create a folder
 
 
 counter = 0 # Set counter
-while np.average(array) < 0.5: # While snow height is lower than 1
+while np.average(array) < 1.0: # While snow height is lower than 1
 
     evaluate_snow(snow, array, 0.05, 0.1) # Evaluate snowflakes
 
-    smooth(array, 0.4) # Smooth the snow
+    smooth(array, 0.1) # Smooth the snow
 
     #show_surface(array, snow, savedir + "/" + str(i).zfill(4) + '.png') # Save to file
     #show_surface(array, snow) # No save, just show
