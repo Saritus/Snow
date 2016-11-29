@@ -165,7 +165,7 @@ def print_array(array):
         print array[i]
 
 
-array = np.zeros((50, 50)) # Create empty array
+array = np.zeros((200, 200)) # Create empty array
 height = len(array) # Height of ground-array (should be 50)
 width = len(array[0]) # Width of ground-array (should be 50)
 snow = np.random.rand(height, width) # Create randomized array
@@ -183,8 +183,8 @@ while np.average(array) < 0.5: # While snow height is lower than 1
     #show_surface(array, snow) # No save, just show
 
     if counter%10==0:
-        print counter
+        print str(counter) + ' - ' + str(np.average(array))
 
     counter += 1 # Increase counter
 
-save_as_obj(array, savedir + '/half.obj')
+save_as_obj(array, savedir + '/200_200.obj')
