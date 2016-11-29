@@ -187,7 +187,7 @@ while np.average(array) < 0.05: # While snow height is lower than 1
 
     evaluate_snow(snow, array, 0.05, 0.1) # Evaluate snowflakes
 
-    smooth(array, 0.1) # Smooth the snow
+    smooth(array, 0.4) # Smooth the snow
 
     #show_surface(array, snow, savedir + "/" + str(i).zfill(4) + '.png') # Save to file
     #show_surface(array, snow) # No save, just show
