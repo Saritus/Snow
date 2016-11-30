@@ -19,23 +19,23 @@ def smooth(array, smoothness):
 
             # If Corners
             if x==0 and y==0:
-                array[x,y] = (1-smoothness) * array[x,y] + (smoothness/4) * array[x+1,y] + (smoothness/4) * array[x,y+1]
+                array[x,y] = (1-smoothness) * array[x,y] + (smoothness/2) * array[x+1,y] + (smoothness/2) * array[x,y+1]
             elif x==0 and y==len(array[0])-1:
-                array[x,y] = (1-smoothness) * array[x,y] + (smoothness/4) * array[x+1,y] + (smoothness/4) * array[x,y-1]
+                array[x,y] = (1-smoothness) * array[x,y] + (smoothness/2) * array[x+1,y] + (smoothness/2) * array[x,y-1]
             elif x==len(array)-1 and y==0:
-                array[x,y] = (1-smoothness) * array[x,y] + (smoothness/4) * array[x-1,y] + (smoothness/4) * array[x,y+1]
+                array[x,y] = (1-smoothness) * array[x,y] + (smoothness/2) * array[x-1,y] + (smoothness/2) * array[x,y+1]
             elif x==len(array)-1 and y==len(array[0])-1:
-                array[x,y] = (1-smoothness) * array[x,y] + (smoothness/4) * array[x-1,y] + (smoothness/4) * array[x,y-1]
+                array[x,y] = (1-smoothness) * array[x,y] + (smoothness/2) * array[x-1,y] + (smoothness/2) * array[x,y-1]
 
             # If Edges
             elif x==0:
-                array[x,y] = (1-smoothness*5/5) * array[x,y] + (smoothness/4) * array[x+1,y] + (smoothness/4) * array[x,y+1] + (smoothness/4) * array[x,y-1]
+                array[x,y] = (1-smoothness) * array[x,y] + (smoothness/3) * array[x+1,y] + (smoothness/3) * array[x,y+1] + (smoothness/3) * array[x,y-1]
             elif x==len(array)-1:
-                array[x,y] = (1-smoothness*5/5) * array[x,y] + (smoothness/4) * array[x-1,y] + (smoothness/4) * array[x,y+1] + (smoothness/4) * array[x,y-1]
+                array[x,y] = (1-smoothness) * array[x,y] + (smoothness/3) * array[x-1,y] + (smoothness/3) * array[x,y+1] + (smoothness/3) * array[x,y-1]
             elif y==0:
-                array[x,y] = (1-smoothness*5/5) * array[x,y] + (smoothness/4) * array[x+1,y] + (smoothness/4) * array[x-1,y] + (smoothness/4) * array[x,y+1]
+                array[x,y] = (1-smoothness) * array[x,y] + (smoothness/3) * array[x+1,y] + (smoothness/3) * array[x-1,y] + (smoothness/3) * array[x,y+1]
             elif y==len(array[0])-1:
-                array[x,y] = (1-smoothness*5/5) * array[x,y] + (smoothness/4) * array[x+1,y] + (smoothness/4) * array[x-1,y] + (smoothness/4) * array[x,y-1]
+                array[x,y] = (1-smoothness) * array[x,y] + (smoothness/3) * array[x+1,y] + (smoothness/3) * array[x-1,y] + (smoothness/3) * array[x,y-1]
 
             # Remainings
             else:
@@ -176,7 +176,7 @@ def print_array(array):
         print array[i]
 
 
-array = np.zeros((50, 50)) # Create empty array
+array = np.zeros((100, 100)) # Create empty array
 height = len(array) # Height of ground-array (should be 50)
 width = len(array[0]) # Width of ground-array (should be 50)
 snow = np.random.rand(height, width) # Create randomized array
@@ -188,7 +188,7 @@ while np.average(array) < 1.0: # While snow height is lower than 1
 
     evaluate_snow(snow, array, 0.05, 0.1) # Evaluate snowflakes
 
-    smooth(array, 0.1) # Smooth the snow
+    smooth(array, 0.2) # Smooth the snow
 
     #show_surface(array, snow, savedir + "/" + str(i).zfill(4) + '.png') # Save to file
     #show_surface(array, snow) # No save, just show
@@ -196,7 +196,7 @@ while np.average(array) < 1.0: # While snow height is lower than 1
     counter += 1 # Increase counter
 
     if counter%100==0:
-        save_as_obj(array, savedir + '/50_50_' + str(int(np.average(array) * 100)) + '.obj')
+        save_as_obj(array, savedir + '/100_100_' + str(int(np.average(array) * 100)) + '.obj', 200.)
         print str(counter) + '\t' + str(np.average(array))
 
 #save_as_obj(array, savedir + '/test.obj')
