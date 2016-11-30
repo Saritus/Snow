@@ -126,19 +126,18 @@ def evaluate_snow(snow, array, step=0.05, p=1.0): # Evaluates all snowflakes
 
 def save_as_obj(array, filename, scale=50.):
 
-    big_array = np.zeros((array.shape[0]+2, array.shape[1]+2))
-    big_array[1:1+array.shape[0], 1:1+array.shape[1]] = array
+    big_array = np.zeros((array.shape[0]+2, array.shape[1]+2)) # create a new bigger array with 1 more cell in any direction
+    big_array[1:1+array.shape[0], 1:1+array.shape[1]] = array # put the input array in the middle of the bigger one
 
-    f = open(filename, 'w')
-    f.write('# Eckpunkte\n')
+    f = open(filename, 'w') # open the file
+    f.write('# Eckpunkte\n') # start of the vertices
+    for x in range(0, len(big_array)): # for every x in the bigger array
+        for y in range(0, len(big_array[0])): # for every y in the bigger array
+            f.write(get_vertex_string(x, y, big_array[x, y], scale)) # write x, y and z position of the vertex into the file
 
-    for x in range(0, len(big_array)):
-        for y in range(0, len(big_array[0])):
-            f.write(get_vertex_string(x, y, big_array[x, y], scale))
-
-    f.write('s 1\n')
-    f.write('# Flächen\n')
-    f.write(get_triangles_string(len(big_array), len(big_array[0])))
+    f.write('s 1\n') # Smooth the faces in the 3d model
+    f.write('# Flächen\n') # start of the faces
+    f.write(get_triangles_string(len(big_array), len(big_array[0]))) # write all triangles into the file
     f.close() # you can omit in most cases as the destructor will call it
 
 
