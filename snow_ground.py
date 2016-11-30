@@ -164,6 +164,10 @@ def get_triangles_string(x_max, y_max):
         for y in range(0, y_max-1):
             result += get_triangle_string(number_array[x, y], number_array[x, y+1], number_array[x+1, y])
             result += get_triangle_string(number_array[x+1, y+1], number_array[x+1, y], number_array[x, y+1])
+
+    result += get_triangle_string(number_array[x_max-1, 0], number_array[0, y_max-1], number_array[0, 0])
+    result += get_triangle_string(number_array[0, y_max-1], number_array[x_max-1, 0], number_array[x_max-1, y_max-1])
+
     return result
 
 
@@ -180,7 +184,7 @@ savedir = create_dir('obj') # Create a folder
 
 
 counter = 0 # Set counter
-while np.average(array) < 1.: # While snow height is lower than 1
+while np.average(array) < 1.0: # While snow height is lower than 1
 
     evaluate_snow(snow, array, 0.05, 0.1) # Evaluate snowflakes
 
@@ -194,3 +198,5 @@ while np.average(array) < 1.: # While snow height is lower than 1
     if counter%100==0:
         save_as_obj(array, savedir + '/50_50_' + str(int(np.average(array) * 100)) + '.obj')
         print str(counter) + '\t' + str(np.average(array))
+
+#save_as_obj(array, savedir + '/test.obj')
