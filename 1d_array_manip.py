@@ -44,63 +44,34 @@ print array
 print newarray
 
 for i in range(0, width*height):
-
     # Ecken
-
     # # Oben links
-
     if i==0:
-
         print 'Oben links'
-
     # # Oben rechts
-
     elif i==width-1:
-
         print 'Oben rechts'
-
     # # Unten links
-
     elif i==width*height-width:
-
         print 'Unten links'
-
     # # Unten rechts
-
     elif i==width*height-1:
-
         print 'Unten rechts'
-
     # Ränder
-
     # # Oben
-
     elif i<width:
-
         print 'Oben'
-
     # # Unten
-
     elif i>width*height-width:
-
         print 'Unten'
-
     # # Links
-
     elif i%width==0:
-
         print 'Links'
-
     # # Rechts
-
     elif i%width==width-1:
-
         print 'Rechts'
-
     # Mitte
-
     else:
-
         print 'Mitte'
 
 show_surface(array)
