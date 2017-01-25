@@ -24,17 +24,8 @@ namespace Smoothing
 
             for (int count = 0; count < 30; count++)
             {
-                //Console.Write("Array: ");
-
                 // Printing
-                for (int i = 0; i < array.Length; i++)
-                {
-                    Console.Write("{0:N2} ", array[i]);
-                }
-
-                double avg = array.Sum() / array.Length;
-
-                Console.Write("Avg: {0:N2}\n", avg);
+                print_array(array);
 
                 // Smoothing
                 array = smooth(array, width, 0.05);
@@ -110,6 +101,15 @@ namespace Smoothing
             }
 
             return result;
+        }
+
+        static void print_array(double[] array)
+        {
+            for (int i = 0; i < array.Length; i++)
+            {
+                Console.Write("{0:N2} ", array[i]);
+            }
+            Console.Write("\n");
         }
     }
 }
