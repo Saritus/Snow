@@ -28,7 +28,7 @@ for i in range(0, width*height):
 
 # # Unten rechts
 
-# Rï¿½nder
+# Ränder
 
 # # Oben
 
@@ -39,6 +39,9 @@ for i in range(0, width*height):
 # # Rechts
 
 # Mitte
+
+newarray = array
+
 def show_surface(paramarray, filename=None):
 
     array = paramarray.reshape()
