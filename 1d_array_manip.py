@@ -30,7 +30,6 @@ def show_surface(paramarray, filename=None):
         plt.show() # Show the figure
     plt.close(fig) # Close the figure
 
-
 width = 50
 height = 50
 array = np.random.rand(width * height)
@@ -45,30 +44,46 @@ print array
 print newarray
 
 for i in range(0, width*height):
-    print i
-    print array[i]
 
-# Ecken
+    # Ecken
 
-# # Oben links
+    if
 
-# # Oben rechts
+    # # Oben links
 
-# # Unten links
+    # # Oben rechts
 
-# # Unten rechts
+    # # Unten links
 
-# Ränder
+    # # Unten rechts
 
-# # Oben
+    # Ränder
 
-# # Unten
+    # # Oben
 
-# # Links
+    if i==0:
 
-# # Rechts
+        print 'oben'
 
-# Mitte
+    # # Unten
+
+    if i==height-1:
+
+        print 'unten'
+
+    # # Links
+
+    if i%width==0:
+
+        print 'links'
+
+    # # Rechts
+
+    if i%width==width-1:
+
+        print 'rechts'
+
+    # Mitte
 
 show_surface(array)
 
