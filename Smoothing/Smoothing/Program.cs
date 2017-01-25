@@ -11,8 +11,8 @@ namespace Smoothing
         static void Main(string[] args)
         {
             // Declaration
-            int width = 10;
-            int height = 10;
+            int width = 256;
+            int height = 256;
             double[] array = new double[width * height];
 
             // Initialisation
@@ -22,7 +22,7 @@ namespace Smoothing
                 array[i] = randNum.NextDouble();
             }
 
-            for (int count = 0; count < 30; count++)
+            for (int count = 0; count < 1000; count++)
             {
                 // Printing
                 // print_array(array);
