@@ -14,6 +14,10 @@ newarray[0] = 1
 print array
 print newarray
 
+for i in range(0, width*height):
+    print i
+    print array[i]
+
 # Ecken
 
 # # Oben links
