@@ -1,3 +1,7 @@
 *.mp4
 .idea/
 *.png
+*.suo
+bin/
+Debug/
+Release/
