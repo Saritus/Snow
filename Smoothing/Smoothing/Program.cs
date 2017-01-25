@@ -10,6 +10,10 @@ namespace Smoothing
     {
         static void Main(string[] args)
         {
+            // Declaration
+            int width = 10;
+            int height = 10;
+            double[] array = new double[width * height];
         }
 
         double[] smooth(double[] array, int width)
