@@ -31,7 +31,7 @@ namespace Smoothing
 
                 var watch = System.Diagnostics.Stopwatch.StartNew();
 
-                for (int frames = 0; frames < 1; frames++)
+                for (int frames = 0; frames < 60; frames++)
                 {
                     array = smooth(array, width, 0.05);
                 }
