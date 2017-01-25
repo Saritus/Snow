@@ -30,8 +30,8 @@ def show_surface(paramarray, filename=None):
         plt.show() # Show the figure
     plt.close(fig) # Close the figure
 
-width = 5
-height = 5
+width = 50
+height = 50
 array = np.random.rand(width * height)
 
 p = 0.1
