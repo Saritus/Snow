@@ -73,7 +73,8 @@ while counter<5:
         # Mitte
         else:
             print 'Mitte'
+            
 
-    show_surface(array)
+    show_surface(newarray, 'img/'+str(counter).zfill(3)+'.png')
     counter+=1
 
