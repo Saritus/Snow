@@ -142,7 +142,7 @@ def save_as_obj(array, filename, scale=50.):
 
 
 def get_vertex_string(x, y, z, scale = 1.):
-    return 'v ' + str(x / scale) + ' ' + str(z) + ' ' + str(y / scale) + '\n'
+    return 'v ' + str(x / scale) + ' ' + str(z) + ' ' + str(y / scale) + '\n' # v <x-position> <y-position> <z-position>
 
 def get_triangle_string(a, b, c):
     return 'f ' + str(a) + ' ' + str(b) + ' ' + str(c) + '\n'
