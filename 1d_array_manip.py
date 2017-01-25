@@ -36,16 +36,16 @@ def smooth_array():
         # Ecken
         # # Oben links
         if i==0:
-            newarray[i] = (1-3*p)*array[i] + p*array[i+1] + p*array[i+width]
+            newarray[i] = (1-2*p)*array[i] + p*array[i+1] + p*array[i+width]
         # # Oben rechts
         elif i==width-1:
-            newarray[i] = (1-3*p)*array[i] + p*array[i-1] + p*array[i+width]
+            newarray[i] = (1-2*p)*array[i] + p*array[i-1] + p*array[i+width]
         # # Unten links
         elif i==width*height-width:
-            newarray[i] = (1-3*p)*array[i] + p*array[i+1] + p*array[i-width]
+            newarray[i] = (1-2*p)*array[i] + p*array[i+1] + p*array[i-width]
         # # Unten rechts
         elif i==width*height-1:
-            newarray[i] = (1-3*p)*array[i] + p*array[i-1] + p*array[i-width]
+            newarray[i] = (1-2*p)*array[i] + p*array[i-1] + p*array[i-width]
 
         # Ränder
         # # Oben
@@ -65,11 +65,11 @@ def smooth_array():
         else:
             newarray[i] = (1-4*p)*array[i] + p*array[i-1] + p*array[i+1] + p*array[i-width] + p*array[i+width]
 
-width = 50
-height = 50
+width = 100
+height = 100
 array = np.random.rand(width * height)
 
-p = 0.01
+p = 0.2
 newarray = np.array(array, copy=True)
 
 counter=0
