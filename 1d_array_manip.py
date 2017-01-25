@@ -73,7 +73,7 @@ while counter<5:
         # Mitte
         else:
             print 'Mitte'
-            
+            newarray[i] = (1-4*p)*array[i] + p*array[i-1] + p*array[i+1] + p*array[i-width] + p*array[i+width]
 
     show_surface(newarray, 'img/'+str(counter).zfill(3)+'.png')
     array=np.array(newarray, copy=True)
