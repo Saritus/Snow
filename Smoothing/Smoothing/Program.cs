@@ -14,6 +14,13 @@ namespace Smoothing
             int width = 10;
             int height = 10;
             double[] array = new double[width * height];
+
+            // Initialisation
+            Random randNum = new Random();
+            for (int i = 0; i < array.Length; i++)
+            {
+                array[i] = randNum.NextDouble();
+            }
         }
 
         double[] smooth(double[] array, int width)
