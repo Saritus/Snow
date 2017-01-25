@@ -13,3 +13,25 @@ print newarray
 newarray[0] = 1
 print array
 print newarray
+
+# Ecken
+
+# # Oben links
+
+# # Oben rechts
+
+# # Unten links
+
+# # Unten rechts
+
+# R�nder
+
+# # Oben
+
+# # Unten
+
+# # Links
+
+# # Rechts
+
+# Mitte
