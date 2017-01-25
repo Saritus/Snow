@@ -34,11 +34,11 @@ width = 50
 height = 50
 array = np.random.rand(width * height)
 
-p = 0.1
+p = 0.01
 newarray = np.array(array, copy=True)
 
 counter=0
-while counter<5:
+while counter<500:
 
     for i in range(0, width*height):
 
