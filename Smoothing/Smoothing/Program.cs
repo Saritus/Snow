@@ -28,7 +28,17 @@ namespace Smoothing
                 // print_array(array);
 
                 // Smoothing
-                array = smooth(array, width, 0.05);
+
+                var watch = System.Diagnostics.Stopwatch.StartNew();
+
+                for (int frames = 0; frames < 1; frames++)
+                {
+                    array = smooth(array, width, 0.05);
+                }
+                watch.Stop();
+                var elapsedMs = watch.ElapsedMilliseconds;
+
+                Console.WriteLine(count + " " + elapsedMs);
             }
             Console.Read();
         }
@@ -99,7 +109,6 @@ namespace Smoothing
                 }
 
             }
-
             return result;
         }
 
