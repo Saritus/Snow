@@ -31,7 +31,7 @@ namespace Smoothing
 
         double[] smooth(double[] array, int width, double p)
         {
-            double[] result = (double[])array.Clone();
+            double[] result = new double[array.Length];
             int height = array.Length / width;
 
             //def smooth_array():
