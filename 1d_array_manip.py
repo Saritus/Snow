@@ -7,3 +7,9 @@ array = np.random.rand(width * height)
 
 p = 0.1
 newarray = np.array(array, copy=True)
+
+print array
+print newarray
+newarray[0] = 1
+print array
+print newarray
