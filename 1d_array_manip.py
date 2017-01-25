@@ -60,15 +60,19 @@ while counter<5:
         # # Oben
         elif i<width:
             print 'Oben'
+            newarray[i] = (1-3*p)*array[i] + p*array[i-1] + p*array[i+1] + p*array[i+width]
         # # Unten
         elif i>width*height-width:
             print 'Unten'
+            newarray[i] = (1-3*p)*array[i] + p*array[i-1] + p*array[i+1] + p*array[i-width]
         # # Links
         elif i%width==0:
             print 'Links'
+            newarray[i] = (1-3*p)*array[i] + p*array[i+1] + p*array[i-width] + p*array[i+width]
         # # Rechts
         elif i%width==width-1:
             print 'Rechts'
+            newarray[i] = (1-3*p)*array[i] + p*array[i-1] + p*array[i-width] + p*array[i+width]
 
         # Mitte
         else:
