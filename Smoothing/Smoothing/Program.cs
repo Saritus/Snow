@@ -39,6 +39,7 @@ namespace Smoothing
                 // Smoothing
                 array = smooth(array, width, 0.05);
             }
+            Console.Read();
         }
 
         static double[] smooth(double[] array, int width, double p)
