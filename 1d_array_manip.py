@@ -45,42 +45,33 @@ while counter<500:
         # Ecken
         # # Oben links
         if i==0:
-            print 'Oben links'
             newarray[i] = (1-3*p)*array[i] + p*array[i+1] + p*array[i+width]
         # # Oben rechts
         elif i==width-1:
-            print 'Oben rechts'
             newarray[i] = (1-3*p)*array[i] + p*array[i-1] + p*array[i+width]
         # # Unten links
         elif i==width*height-width:
-            print 'Unten links'
             newarray[i] = (1-3*p)*array[i] + p*array[i+1] + p*array[i-width]
         # # Unten rechts
         elif i==width*height-1:
-            print 'Unten rechts'
             newarray[i] = (1-3*p)*array[i] + p*array[i-1] + p*array[i-width]
 
         # Ränder
         # # Oben
         elif i<width:
-            print 'Oben'
             newarray[i] = (1-3*p)*array[i] + p*array[i-1] + p*array[i+1] + p*array[i+width]
         # # Unten
         elif i>width*height-width:
-            print 'Unten'
             newarray[i] = (1-3*p)*array[i] + p*array[i-1] + p*array[i+1] + p*array[i-width]
         # # Links
         elif i%width==0:
-            print 'Links'
             newarray[i] = (1-3*p)*array[i] + p*array[i+1] + p*array[i-width] + p*array[i+width]
         # # Rechts
         elif i%width==width-1:
-            print 'Rechts'
             newarray[i] = (1-3*p)*array[i] + p*array[i-1] + p*array[i-width] + p*array[i+width]
 
         # Mitte
         else:
-            print 'Mitte'
             newarray[i] = (1-4*p)*array[i] + p*array[i-1] + p*array[i+1] + p*array[i-width] + p*array[i+width]
 
     show_surface(newarray, 'img/'+str(counter).zfill(3)+'.png')
