@@ -22,14 +22,26 @@ namespace Smoothing
                 array[i] = randNum.NextDouble();
             }
 
-            // Printing
-            for (int i = 0; i < array.Length; i++)
+            for (int count = 0; count < 30; count++)
             {
-                Console.WriteLine(array[i]);
+                //Console.Write("Array: ");
+
+                // Printing
+                for (int i = 0; i < array.Length; i++)
+                {
+                    Console.Write("{0:N2} ", array[i]);
+                }
+
+                double avg = array.Sum() / array.Length;
+
+                Console.Write("Avg: {0:N2}\n", avg);
+
+                // Smoothing
+                array = smooth(array, width, 0.05);
             }
         }
 
-        double[] smooth(double[] array, int width, double p)
+        static double[] smooth(double[] array, int width, double p)
         {
             double[] result = new double[array.Length];
             int height = array.Length / width;
