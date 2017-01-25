@@ -30,16 +30,7 @@ def show_surface(paramarray, filename=None):
         plt.show() # Show the figure
     plt.close(fig) # Close the figure
 
-width = 50
-height = 50
-array = np.random.rand(width * height)
-
-p = 0.01
-newarray = np.array(array, copy=True)
-
-counter=0
-while counter<500:
-
+def smooth_array():
     for i in range(0, width*height):
 
         # Ecken
@@ -73,6 +64,18 @@ while counter<500:
         # Mitte
         else:
             newarray[i] = (1-4*p)*array[i] + p*array[i-1] + p*array[i+1] + p*array[i-width] + p*array[i+width]
+
+width = 50
+height = 50
+array = np.random.rand(width * height)
+
+p = 0.01
+newarray = np.array(array, copy=True)
+
+counter=0
+while counter<500:
+
+    smooth_array()
 
     show_surface(newarray, 'img/'+str(counter).zfill(3)+'.png')
     array=np.array(newarray, copy=True)
