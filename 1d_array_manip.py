@@ -46,15 +46,19 @@ while counter<500:
         # # Oben links
         if i==0:
             print 'Oben links'
+            newarray[i] = (1-3*p)*array[i] + p*array[i+1] + p*array[i+width]
         # # Oben rechts
         elif i==width-1:
             print 'Oben rechts'
+            newarray[i] = (1-3*p)*array[i] + p*array[i-1] + p*array[i+width]
         # # Unten links
         elif i==width*height-width:
             print 'Unten links'
+            newarray[i] = (1-3*p)*array[i] + p*array[i+1] + p*array[i-width]
         # # Unten rechts
         elif i==width*height-1:
             print 'Unten rechts'
+            newarray[i] = (1-3*p)*array[i] + p*array[i-1] + p*array[i-width]
 
         # Ränder
         # # Oben
