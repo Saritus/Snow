@@ -25,7 +25,7 @@ namespace Smoothing
             for (int count = 0; count < 30; count++)
             {
                 // Printing
-                print_array(array);
+                // print_array(array);
 
                 // Smoothing
                 array = smooth(array, width, 0.05);
