@@ -76,5 +76,6 @@ while counter<5:
             
 
     show_surface(newarray, 'img/'+str(counter).zfill(3)+'.png')
+    array=np.array(newarray, copy=True)
     counter+=1
 
